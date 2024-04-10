@@ -1,0 +1,78 @@
+*{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.contenedor{
+  height: 357px;
+  overflow-y: scroll;  
+}
+table {
+  text-align: left;
+  border-collapse: collapse;
+  border-radius: 7px;
+  background-color: #ffffff;
+  backdrop-filter: blur(8px);
+  align-items: center;
+}
+thead {
+  border-bottom: 2px solid #363b3f;
+}
+th {
+  padding: 1rem 0.5rem;
+  font-weight: 700;
+  color: #000000;
+}
+td {
+  padding: 0.7rem 0.5rem;
+  color: #050505;
+}
+
+tr:hover td {
+  background-color: #00000048;
+  color: #fff;
+  transition: all ease 0.3s;
+}
+.inputSearch :focus{
+  outline: none;
+}
+.search{
+  display: flex;
+  justify-content: end;
+}
+.inputSearch{
+  border-radius: 5px;
+  background-color: #f3eded;
+  backdrop-filter: blur(8px);
+}
+select{
+  border-radius: 5px;
+  background-color: #f3eded;
+}
+p{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.modal-container{
+  background-color: #00000057;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+}
+.modal-body{
+  background-color: #ffffff;
+  width: 20%;
+  min-width: 400px;
+  border-radius: 1rem;
+  position: relative;
+  padding: 1rem;
+ 
+}
+.boton{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: .5rem;
+}
