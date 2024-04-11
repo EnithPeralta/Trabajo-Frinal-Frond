@@ -13,6 +13,7 @@ const TableComponent = () => {
         setIsOpen(!isOpenModal);
         setIsEdit(true)
         setProduct(producto);
+        
     }
 
     const addNewProduct = () => {

@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react"
 import { ModalContext } from "../context/providerModal";
 
 const FormularioComponent = ({ producto = '' }) => {
-  const { setIsOpen, isEdit, agregarProducto } = useContext(ModalContext)
+  const { setIsOpen, isEdit, agregarProducto,setEdit,handleEdit} = useContext(ModalContext)
 
   const [nombre, setNombre] = useState(producto.nombre || '');
   const [id, setId] = useState(producto.id || '');
@@ -15,17 +15,19 @@ const FormularioComponent = ({ producto = '' }) => {
       caracteristica
     }
     console.log(objetoBase);
-    !isEdit ? agregarProducto(objetoBase) : null
-
+    if(!isEdit ){
+     agregarProducto(objetoBase)
+    }else{
+      handleEdit(objetoBase)
+    }
   }
-
   useEffect(() => {
     console.log(isEdit);
   }, [isEdit])
 
   return (
     <div className="container center">
-      <form className="">
+      <form onSubmit={handleSubmit} className="">
         <label> Id:</label>
         <input
           className="form-control"

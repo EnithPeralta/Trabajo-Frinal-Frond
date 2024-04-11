@@ -1,5 +1,5 @@
 import { useState, createContext } from 'react'
-
+import swal from 'sweetalert'
 const ModalContext = createContext()
 
 const ProviderModal = ({ children }) => {
@@ -18,6 +18,7 @@ const ProviderModal = ({ children }) => {
         { id: "9", nombre: "Cafetera", caracteristica: "Tipo de cafetera (goteo, espresso, cápsulas, etc.)" },
         { id: "10", nombre: "Televisor", caracteristica: "Sistema operativo (Smart TV), tecnologías adicionales (HDR, Dolby Vision, etc.)" }
     ]);
+    const [idProduct,setIdProduct]= useState(null);
 
     const eliminarProducto = (id) => {
         const eliminar = [...productos];
@@ -45,9 +46,28 @@ const ProviderModal = ({ children }) => {
     };
 
     const agregarProducto = (producto) => {
-        setProductos([...productos, producto])
-        setIsOpen(false)
+        if (producto.nombre !== "" && producto.descripcion !== "" && producto.precio !== "") {
+            setProductos([...productos, producto]);
+            setIsOpen(false);
+            swal({
+                text: "Producto Agregado Con Éxito",
+                icon: 'success',
+                confirmarButtonText: 'Aceptar'
+            });
+        } else {
+            swal({
+                text:"Error: Todos los campos deben estar llenos para agregar un producto",
+                icon:"error"
+        });
+        }
     }
+    
+    const handleEdit = (productoActualizar) => {
+        let updatedProductos = [...productos]; 
+        updatedProductos[idProduct] = productoActualizar;
+        setProductos(updatedProductos);
+        setIdProduct(null);
+    }    
     return (
         <ModalContext.Provider
             value={{
@@ -58,7 +78,8 @@ const ProviderModal = ({ children }) => {
                 productos,
                 setProductos,
                 eliminarProducto,
-                agregarProducto
+                agregarProducto,
+                handleEdit
             }}>
             {children}
         </ModalContext.Provider>
